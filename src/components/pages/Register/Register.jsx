@@ -17,14 +17,14 @@ import {
 import { LinkGoBack } from "../../Custom/CustomComponents";
 
 const Register = ({
-  values,
   handleChange,
   handleSubmit,
   errors,
   showPassword,
   handleClickShowPassword,
   handleMouseDownPassword,
-  navigate
+  navigate,
+  handleUser,
 }) => {
   return (
     <Box
@@ -183,9 +183,10 @@ const Register = ({
           </Box>
         </Grid>
         <Grid item lg={12}>
-          <ButtonCustom type="submit" className={styles.btn} onClick={console.log(values)}> 
+          <ButtonCustom type="submit" className={styles.btn} onClick={handleUser}> 
             Send
           </ButtonCustom>
+          
         </Grid>
       </Grid>
     </Box>

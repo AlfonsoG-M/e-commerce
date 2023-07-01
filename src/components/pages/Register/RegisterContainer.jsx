@@ -3,6 +3,10 @@ import { useFormik } from "formik";
 import Register from "./Register";
 import { useNavigate } from "react-router";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { login } from "../../../store/auth/authSlice";
+import SuccessContainer from "../../common/success/SuccessContainer";
+
 
 const RegisterContainer = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,6 +16,18 @@ const RegisterContainer = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  const dispatch = useDispatch()
+  const [user, setUser] = useState({})
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const handleUser = ()=> {
+    setUser(values)
+  }
+
+  console.log("Ver el usuario", user);
 
   const { values, handleSubmit, handleChange, errors } = useFormik({
     initialValues: {
@@ -23,8 +39,9 @@ const RegisterContainer = () => {
       confirmPassword: "",
     },
     onSubmit: (data) => {
-      console.log(data);
-      console.log("se envio el formulario");
+      dispatch(login(user))
+      handleOpen()
+      console.log("Data desde Register Container", data);
     },
     validationSchema: Yup.object().shape({
       name: Yup.string()
@@ -63,16 +80,26 @@ const RegisterContainer = () => {
   });
   const navigate = useNavigate();
   return (
+    <>
     <Register
       showPassword={showPassword}
       handleClickShowPassword={handleClickShowPassword}
       handleMouseDownPassword={handleMouseDownPassword}
-      values={values}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       errors={errors}
       navigate={navigate}
+      handleUser={handleUser}
     />
+
+    <SuccessContainer open={open}
+        handleOpen={handleOpen}
+        handleClose={handleClose} />
+    </>
+
+    
+
+
   );
 };
 

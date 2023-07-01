@@ -56,8 +56,6 @@ const Home = () => {
     });
   }, []);
 
-  console.log(productsDeseados);
-
   if (!items) {
     return <Loading />;
   }

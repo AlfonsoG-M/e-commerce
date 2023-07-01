@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 const CheckoutContainer = () => {
   const { cart, total } = useSelector((store) => store.cartSlice);
+  const {user} = useSelector((store)=> store.auth)
+  console.log(user);
   let shipping = 50;
   let vat = total * 0.21;
   let grandTotal = total + vat + shipping;
@@ -22,9 +24,9 @@ const CheckoutContainer = () => {
 
   const { handleSubmit, handleChange, errors, values } = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      phone: "",
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
       address: "",
       zipCode: "",
       city: "",
