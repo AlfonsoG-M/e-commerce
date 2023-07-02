@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 const CheckoutContainer = () => {
   const { cart, total } = useSelector((store) => store.cartSlice);
   const {user} = useSelector((store)=> store.auth)
-  console.log(user);
   let shipping = 50;
   let vat = total * 0.21;
   let grandTotal = total + vat + shipping;
@@ -21,6 +20,7 @@ const CheckoutContainer = () => {
     setOpen(false);
     dispatch(clearCart());
   };
+  const nameAndSurename = `${user.name} ${user.lastName} `
 
   const { handleSubmit, handleChange, errors, values } = useFormik({
     initialValues: {
@@ -63,7 +63,6 @@ const CheckoutContainer = () => {
   });
 
   const navigate = useNavigate();
-console.log(errors);
   return (
     <>
       <Checkout
@@ -77,6 +76,9 @@ console.log(errors);
         shipping={shipping}
         vat={vat}
         total={total}
+        name={nameAndSurename}
+        email={user.email}
+        phone={user.phone}
       />
       <CheckoutModalContainer
         open={open}

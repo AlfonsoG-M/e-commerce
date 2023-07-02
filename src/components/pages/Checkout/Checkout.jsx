@@ -20,7 +20,10 @@ const Checkout = ({
   values,
   cart,
   grandTotal,
-  total
+  total,
+  name,
+  email,
+  phone
 }) => {
   return (
     <Grid
@@ -114,6 +117,7 @@ const Checkout = ({
                   onChange={handleChange}
                   error={errors.name ? true : false}
                   helperText={errors.name}
+                  defaultValue={name}
                 />
               </Grid>
               <Grid
@@ -145,6 +149,7 @@ const Checkout = ({
                   onChange={handleChange}
                   error={errors.email ? true : false}
                   helperText={errors.email}
+                  defaultValue={email}
                 />
               </Grid>
               <Grid
@@ -167,6 +172,7 @@ const Checkout = ({
                     lineHeight: "16px",
                     letterSpacing: "-0.214286px",
                   }}
+                  
                 >
                   Phone Number
                 </Typography>
@@ -176,6 +182,7 @@ const Checkout = ({
                   onChange={handleChange}
                   error={errors.phone ? true : false}
                   helperText={errors.phone}
+                  defaultValue={phone}
                 />
               </Grid>
             </Grid>

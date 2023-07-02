@@ -27,7 +27,6 @@ const RegisterContainer = () => {
     setUser(values)
   }
 
-  console.log("Ver el usuario", user);
 
   const { values, handleSubmit, handleChange, errors } = useFormik({
     initialValues: {

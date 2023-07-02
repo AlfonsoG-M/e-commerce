@@ -49,8 +49,8 @@
 
 .usersContainer {
     display: flex;
-    flex-direction: row;
     gap: 2rem;
+    flex-direction: row;
 }
 
 .usersContainer .loginBox {
